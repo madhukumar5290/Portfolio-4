@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Articles | Madhu Kumar Sikilammetla</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.featured-box{background:var(--surface);border:1px solid var(--border2);padding:3rem;margin-bottom:4rem;position:relative;overflow:hidden}
+.featured-box::after{content:'FEATURED';position:absolute;top:1.25rem;right:1.25rem;font-family:var(--mono);font-size:.5rem;letter-spacing:.15em;color:var(--gold);border:1px solid rgba(240,180,41,.3);padding:.2rem .55rem}
+.fa-label{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:.75rem}
+.fa-title{font-family:var(--serif);font-size:clamp(1.6rem,4vw,2.8rem);font-weight:400;color:var(--text);line-height:1.1;margin-bottom:1.1rem}
+.fa-title em{font-style:italic;color:var(--gold)}
+.fa-body{font-family:var(--sans);font-size:.92rem;line-height:1.8;color:var(--text2);margin-bottom:1.5rem;max-width:680px}
+.article-list{display:flex;flex-direction:column}
+.a-item{padding:2.5rem 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 48px;gap:2rem;align-items:start;cursor:pointer;transition:opacity .2s}
+.a-item:hover{opacity:.82}
+.a-num{font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;color:var(--muted);margin-bottom:.35rem}
+.a-tag{font-family:var(--mono);font-size:.57rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:.5rem}
+.a-title{font-family:var(--serif);font-size:1.55rem;font-weight:400;color:var(--text);line-height:1.2;margin-bottom:.6rem}
+.a-excerpt{font-family:var(--sans);font-size:.87rem;line-height:1.65;color:var(--text2);max-width:640px;margin-bottom:.75rem}
+.a-meta{font-family:var(--mono);font-size:.57rem;letter-spacing:.07em;color:var(--muted)}
+.a-arrow{font-size:1.4rem;color:var(--border);transition:color .3s;align-self:center;text-align:center}
+.a-item:hover .a-arrow{color:var(--gold)}
+.new-badge{display:inline-block;font-family:var(--mono);font-size:.49rem;letter-spacing:.1em;text-transform:uppercase;background:var(--blue);color:#080C18;padding:.18rem .5rem;margin-left:.6rem;vertical-align:middle}
+.nl-wrap{background:var(--bg2);border:1px solid var(--border);padding:3rem;margin-top:5rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.nl-title{font-family:var(--serif);font-size:1.9rem;font-weight:300;color:var(--text);line-height:1.2;margin-bottom:.75rem}
+.nl-title em{font-style:italic;color:var(--gold)}
+.nl-body{font-family:var(--sans);font-size:.87rem;line-height:1.65;color:var(--muted)}
+@media(max-width:860px){.a-item{grid-template-columns:1fr}.a-arrow{display:none}.nl-wrap{grid-template-columns:1fr;gap:2rem}}
+</style>
+</head>
+<body>
+<nav>
+  <button class="nav-ham" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <a class="nav-logo" href="index.html">MK.</a>
+  <div class="nav-spacer"></div>
+  <ul class="nav-links">
+    <li><a href="work.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="buzz.html">Buzz</a></li>
+    <li><a href="certifications.html">Certifications</a></li>
+    <li><a href="id-frameworks.html">ID Cheat Sheet</a></li>
+    <li><a href="articles.html" class="active">Articles</a></li>
+    <li><a href="spot-the-bug.html">Spot the Bug ↗</a></li>
+    <li><a href="id-model-selector.html">ID Selector ↗</a></li>
+    <li><a href="lms-demo.html">LMS Demo ↗</a></li>
+  </ul>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">☀️</button>
+  <a href="contact.html" class="nav-cta">Let's Talk</a>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html">Home</a><a href="work.html">Work</a><a href="about.html">About</a>
+  <a href="buzz.html">Buzz</a><a href="certifications.html">Certifications</a>
+  <a href="id-frameworks.html">ID Cheat Sheet</a><a href="articles.html" class="active">Articles</a>
+  <a href="spot-the-bug.html">Spot the Bug ↗</a><a href="id-model-selector.html">ID Selector ↗</a>
+  <a href="lms-demo.html">LMS Demo ↗</a><a href="contact.html">Let's Talk</a>
+</div>
+
+<div class="page-hero">
+  <div class="hero-bg"></div><div class="hero-grid"></div>
+  <div class="eyebrow reveal">Articles</div>
+  <h1 class="display reveal d1">Practical writing on the<br><em>technical side of L&D.</em></h1>
+  <p style="font-family:var(--sans);font-size:1.05rem;color:var(--text2);max-width:560px;margin-top:.85rem;line-height:1.7" class="reveal d2">Not recycled theory. Not listicles. Practical write-ups on Storyline development, accessibility engineering, ID frameworks, localisation workflows, and the decisions behind real projects.</p>
+</div>
+
+<section class="section">
+  <div class="featured-box reveal">
+    <div class="fa-label">Accessibility · Storyline 360 · Featured</div>
+    <h2 class="fa-title">Why Accessibility in Storyline<br>Starts with <em>Slide Architecture</em></h2>
+    <p class="fa-body">Most Storyline developers bolt accessibility on at the end — adding alt text just before publishing and hoping automated checkers don't catch anything serious. After building dozens of ADA and Section 508-compliant courses, one truth stands out: the moment you treat accessibility as a finishing step, you've already failed. It must be the first architectural decision — built into master slides, focus order, colour palette, and interaction design before a single piece of content is written.</p>
+    <p class="fa-body">Tab order, focus management, colour contrast, keyboard navigation — none of these can be reliably fixed after a course is built. This article walks through exactly how to structure Storyline templates to make accessibility the default, not the exception.</p>
+    <a href="#" class="btn btn-primary" onclick="alert('Full article coming soon. Subscribe below to be notified.');return false">Read Article →</a>
+  </div>
+
+  <div class="article-list">
+    <div class="a-item reveal">
+      <div>
+        <div class="a-num">01</div>
+        <div class="a-tag">eLearning Development · JavaScript</div>
+        <h3 class="a-title">JavaScript in Storyline: What the Documentation Doesn't Tell You <span class="new-badge">New</span></h3>
+        <p class="a-excerpt">The Articulate documentation covers the basics. What it doesn't cover is the timing issues, scope quirks, and why GetPlayer() fails in ways that make no sense until you understand the Storyline rendering pipeline. Field notes from years of custom JS development across 20+ projects.</p>
+        <div class="a-meta">8 min read · JavaScript · Storyline 360</div>
+      </div>
+      <div class="a-arrow">↗</div>
+    </div>
+
+    <div class="a-item reveal">
+      <div>
+        <div class="a-num">02</div>
+        <div class="a-tag">Localisation · Workflow Design</div>
+        <h3 class="a-title">Localising eLearning to 16+ Languages Without Losing Your Mind</h3>
+        <p class="a-excerpt">What happens when one course needs to work in English, Hindi, Arabic, French, German, Japanese, Mandarin, and nine more? The workflow, the tooling, the RTL design decisions, and the LMS packaging considerations that most localisation guides skip entirely.</p>
+        <div class="a-meta">11 min read · Localisation · Operations</div>
+      </div>
+      <div class="a-arrow">↗</div>
+    </div>
+
+    <div class="a-item reveal">
+      <div>
+        <div class="a-num">03</div>
+        <div class="a-tag">Instructional Design · Action Mapping</div>
+        <h3 class="a-title">Why Your Compliance Course is Failing (and It's Not the Learners' Fault)</h3>
+        <p class="a-excerpt">Compliance training failure is almost always a design problem. The course tells learners what the policy says. It doesn't practise the decisions the policy requires. Using Action Mapping to redesign a banking compliance module — before and after, with the content list that got cut.</p>
+        <div class="a-meta">9 min read · Instructional Design · Compliance</div>
+      </div>
+      <div class="a-arrow">↗</div>
+    </div>
+
+    <div class="a-item reveal">
+      <div>
+        <div class="a-num">04</div>
+        <div class="a-tag">AR/VR · Emerging Technology</div>
+        <h3 class="a-title">ZapWorks AR in eLearning: A Practitioner's Honest Assessment</h3>
+        <p class="a-excerpt">After building AR-enhanced learning with ZapWorks across several projects, here's an honest breakdown: where it genuinely adds value, where it's theatre, and what learner adoption actually looks like in a corporate environment without dedicated devices.</p>
+        <div class="a-meta">7 min read · AR/VR · ZapWorks</div>
+      </div>
+      <div class="a-arrow">↗</div>
+    </div>
+
+    <div class="a-item reveal">
+      <div>
+        <div class="a-num">05</div>
+        <div class="a-tag">LMS · SCORM · xAPI</div>
+        <h3 class="a-title">SCORM vs xAPI: What Actually Matters for Your LMS Decision</h3>
+        <p class="a-excerpt">Written from inside Mindtickle and Docebo admin panels, with real packaging decisions, compatibility constraints, and data outcomes from live deployments — not from a vendor comparison page.</p>
+        <div class="a-meta">10 min read · SCORM · xAPI · LMS</div>
+      </div>
+      <div class="a-arrow">↗</div>
+    </div>
+
+    <div class="a-item reveal">
+      <div>
+        <div class="a-num">06</div>
+        <div class="a-tag">Game Design · Learning Science</div>
+        <h3 class="a-title">Game Mechanics That Actually Transfer: Notes from 10+ Learning Games</h3>
+        <p class="a-excerpt">After building Snake & Ladder, Trivia Time, Spin the Wheel, Memory Flash Cards, and more — what I've learned about which mechanics drive knowledge retention versus which just drive completion rates.</p>
+        <div class="a-meta">8 min read · Game Design · Engagement</div>
+      </div>
+      <div class="a-arrow">↗</div>
+    </div>
+
+    <div class="a-item reveal">
+      <div>
+        <div class="a-num">07</div>
+        <div class="a-tag">Blended Learning · Instructional Design</div>
+        <h3 class="a-title">Designing Blended Learning That Actually Blends</h3>
+        <p class="a-excerpt">Most "blended learning" is just eLearning plus a Zoom call. Real blending means each modality does what it does best — and they're sequenced to reinforce each other. A practical design guide from projects that got it right and wrong.</p>
+        <div class="a-meta">9 min read · Blended Learning · ID</div>
+      </div>
+      <div class="a-arrow">↗</div>
+    </div>
+  </div>
+
+  <div class="nl-wrap reveal">
+    <div>
+      <div class="eyebrow">Newsletter</div>
+      <div class="nl-title">Get the next piece<br>in your <em>inbox.</em></div>
+      <p class="nl-body">Practical writing on the technical side of L&D — Storyline JavaScript, accessibility engineering, localisation workflows, LMS operations. Tested in real projects. Sent when something worth reading is ready — no schedule, no spam.</p>
+    </div>
+    <div>
+      <div class="form-group"><label class="form-label">Your Name</label><input class="form-input" type="text" id="nl-name" placeholder="Your name"></div>
+      <div class="form-group"><label class="form-label">Your Email</label><input class="form-input" type="email" id="nl-email" placeholder="your@email.com"></div>
+      <button class="btn btn-primary" onclick="subscribeNL()">Subscribe →</button>
+      <div id="nl-ok" style="display:none;font-family:var(--mono);font-size:.63rem;letter-spacing:.08em;color:var(--teal);margin-top:.9rem">✓ You're subscribed!</div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="eyebrow">Seen something useful?</div>
+  <div class="cta-band-title">Want to apply it to<br><em>a real project?</em></div>
+  <a href="contact.html" class="btn-dark">Get in Touch →</a>
+  <a href="work.html" class="btn-dark outline">See My Work</a>
+</div>
+<footer>
+  <div class="footer-logo">Madhu Kumar Sikilammetla · Instructional Designer & eLearning Developer · 2024</div>
+  <ul class="footer-links">
+    <li><a href="https://www.linkedin.com/in/madhu-kumar-sikilammetla-22694598" target="_blank">LinkedIn</a></li>
+    <li><a href="work.html">Work</a></li><li><a href="contact.html">Contact</a></li>
+  </ul>
+</footer>
+<script src="main.js"></script>
+<script>
+function subscribeNL(){
+  const e=document.getElementById('nl-email').value.trim();
+  if(!e){alert('Please enter your email.');return;}
+  document.getElementById('nl-ok').style.display='block';
+}
+</script>
+</body>
+</html>

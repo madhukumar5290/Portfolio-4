@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Madhu Kumar Sikilammetla — Instructional Designer & eLearning Developer. 7+ years building SCORM/xAPI-compliant, ADA-accessible learning experiences.">
+<title>Madhu Kumar Sikilammetla | Instructional Designer & eLearning Developer</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* HOME PAGE SPECIFIC */
+.hero-section{
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:calc(var(--nav-h) + 3.5rem) var(--ph) 3rem;
+  position:relative;overflow:hidden;
+}
+.hero-glow1{position:absolute;top:-20%;right:-5%;width:600px;height:600px;background:radial-gradient(circle,rgba(91,156,246,.07) 0%,transparent 65%);pointer-events:none}
+.hero-glow2{position:absolute;bottom:5%;left:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(240,180,41,.05) 0%,transparent 65%);pointer-events:none}
+.hero-grid-bg{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(91,156,246,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(91,156,246,.04) 1px,transparent 1px);background-size:64px 64px}
+
+.hero-inner{display:grid;grid-template-columns:1fr 280px;gap:4rem;align-items:center;position:relative;z-index:1}
+.hero-avail{display:flex;align-items:center;gap:.6rem;font-family:var(--mono);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-bottom:1.75rem}
+.hero-h1{font-family:var(--serif);font-size:clamp(2.8rem,7vw,6.5rem);font-weight:400;line-height:1.03;letter-spacing:-.025em;color:var(--text);margin-bottom:.35rem}
+.hero-h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-family:var(--mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1.75rem}
+.hero-body{max-width:600px;font-family:var(--sans);font-size:1.05rem;line-height:1.75;color:var(--text2);margin-bottom:2.5rem}
+.hero-actions{display:flex;gap:.85rem;flex-wrap:wrap;margin-bottom:4rem}
+
+/* Profile card */
+.profile-card{background:var(--surface);border:1px solid var(--border2);padding:1.5rem;box-shadow:var(--shadow)}
+.profile-photo{width:100%;aspect-ratio:1;object-fit:cover;display:block;margin-bottom:1.25rem;border:1px solid var(--border)}
+.profile-name{font-family:var(--sans);font-size:.9rem;font-weight:600;color:var(--text);margin-bottom:.2rem}
+.profile-title-sm{font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;color:var(--blue);margin-bottom:.35rem;line-height:1.4}
+.profile-loc{font-family:var(--mono);font-size:.56rem;letter-spacing:.06em;color:var(--muted);margin-bottom:1rem}
+.profile-chips{display:flex;flex-wrap:wrap;gap:.35rem}
+
+/* Stats bar */
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border)}
+.stat{padding:1.5rem 0;border-right:1px solid var(--border)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--serif);font-size:2.8rem;font-weight:300;color:var(--gold);line-height:1;display:block;margin-bottom:.2rem}
+.stat-l{font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+/* Pillars */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:3.5rem}
+.pillar{background:var(--bg);padding:2.5rem;transition:background .3s}
+.pillar:hover{background:var(--bg2)}
+.pillar-num{font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;color:var(--blue);margin-bottom:1.1rem}
+.pillar-icon{font-size:1.75rem;margin-bottom:1rem;display:block}
+.pillar-title{font-family:var(--serif);font-size:1.35rem;font-weight:400;color:var(--text);margin-bottom:.8rem;line-height:1.2}
+.pillar-body{font-family:var(--sans);font-size:.85rem;line-height:1.65;color:var(--text2);margin-bottom:1.1rem}
+
+/* Home project grid */
+.home-projects{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:3.5rem}
+
+/* Radar */
+.radar-wrap{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.radar-legend{display:flex;flex-direction:column;gap:1rem;margin-top:2rem}
+.rl-item{display:flex;align-items:flex-start;gap:.85rem}
+.rl-dot{width:7px;height:7px;background:var(--blue);border-radius:50%;margin-top:.35rem;flex-shrink:0}
+.rl-title{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text);margin-bottom:.15rem}
+.rl-desc{font-family:var(--sans);font-size:.82rem;color:var(--muted);line-height:1.45}
+
+/* Video section */
+.video-section{background:var(--bg2);padding:var(--sv) var(--ph)}
+.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.video-text-label{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:1.25rem;display:flex;align-items:center;gap:.75rem}
+.video-text-label::before{content:'';width:30px;height:1px;background:var(--blue)}
+.video-text-title{font-family:var(--serif);font-size:clamp(1.8rem,4vw,3.2rem);font-weight:400;line-height:1.1;color:var(--text);margin-bottom:1.25rem}
+.video-text-title em{font-style:italic;color:var(--gold)}
+.video-text-body{font-family:var(--sans);font-size:.92rem;line-height:1.75;color:var(--text2);margin-bottom:2rem}
+
+/* Testimonial band */
+.testimonial-band{background:var(--surface);padding:5rem var(--ph);text-align:center}
+.testimonial-inner{max-width:780px;margin:0 auto}
+.t-quote{font-family:var(--serif);font-size:clamp(1.2rem,3vw,1.8rem);font-weight:400;font-style:italic;line-height:1.55;color:var(--text);margin-bottom:1.75rem;padding:0 1rem;position:relative}
+.t-quote::before{content:'\201C';font-size:5rem;color:var(--gold);line-height:0;vertical-align:-.45em;margin-right:.15rem}
+.t-author{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.t-role{font-family:var(--mono);font-size:.58rem;letter-spacing:.07em;color:var(--muted);margin-top:.3rem}
+
+@media(max-width:1100px){
+  .hero-inner{grid-template-columns:1fr}
+  .profile-card{display:none}
+}
+@media(max-width:860px){
+  .hero-section{padding-top:calc(var(--nav-h) + 2rem)}
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(2){border-right:none}
+  .pillars{grid-template-columns:1fr}
+  .home-projects{grid-template-columns:1fr}
+  .radar-wrap{grid-template-columns:1fr;gap:3rem}
+  .video-grid{grid-template-columns:1fr;gap:2.5rem}
+}
+@media(max-width:600px){
+  .hero-h1{font-size:2.5rem}
+  .hero-body{font-size:.95rem}
+  .stats-bar{grid-template-columns:1fr 1fr}
+  .stat:nth-child(odd){border-right:1px solid var(--border)}
+  .stat:nth-child(even){border-right:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV: ham LEFT → MK → spacer → links → toggle → CTA -->
+<nav>
+  <button class="nav-ham" aria-label="Open menu" ><span></span><span></span><span></span></button>
+  <a class="nav-logo" href="index.html">MK.</a>
+  <div class="nav-spacer"></div>
+  <ul class="nav-links">
+    <li><a href="work.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="buzz.html">Buzz</a></li>
+    <li><a href="certifications.html">Certifications</a></li>
+    <li><a href="id-frameworks.html">ID Cheat Sheet</a></li>
+    <li><a href="articles.html">Articles</a></li>
+    <li><a href="spot-the-bug.html">Spot the Bug ↗</a></li>
+    <li><a href="id-model-selector.html">ID Selector ↗</a></li>
+    <li><a href="lms-demo.html">LMS Demo ↗</a></li>
+  </ul>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">☀️</button>
+  <a href="contact.html" class="nav-cta">Let's Talk</a>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html" class="active">Home</a>
+  <a href="work.html">Work</a>
+  <a href="about.html">About</a>
+  <a href="buzz.html">Buzz</a>
+  <a href="certifications.html">Certifications</a>
+  <a href="id-frameworks.html">ID Cheat Sheet</a>
+  <a href="articles.html">Articles</a>
+  <a href="spot-the-bug.html">Spot the Bug ↗</a>
+  <a href="id-model-selector.html">ID Model Selector ↗</a>
+  <a href="lms-demo.html">LMS Demo ↗</a>
+  <a href="contact.html">Let's Talk</a>
+</div>
+
+<!-- HERO -->
+<section class="hero-section">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow1"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-avail reveal"><span class="dot-avail"></span>Available for new opportunities</div>
+      <h1 class="hero-h1 reveal d1">
+        I design the course.<br>
+        I build the interaction.<br>
+        <em>I make it accessible.</em>
+      </h1>
+      <p class="hero-sub reveal d2">Madhu Kumar Sikilammetla · Instructional Designer & eLearning Developer</p>
+      <p class="hero-body reveal d2">7+ years designing and building SCORM/xAPI-compliant, ADA-accessible learning experiences across Healthcare, Banking, Retail, Education and Manufacturing. Proficient in Storyline 360, Rise, custom JavaScript, AR/VR with ZapWorks, 3D with Blender, and multi-language localisation across 16–22 languages.</p>
+      <div class="hero-actions reveal d3">
+        <a href="work.html" class="btn btn-primary btn-lg">See My Work →</a>
+        <a href="contact.html" class="btn btn-outline btn-lg">Let's Talk</a>
+        <a href="https://drive.google.com/file/d/1wsBtUEBdSjdLwK7CxFID6ttaW6afTxf6/view" target="_blank" class="btn btn-outline btn-lg">Download CV ↗</a>
+      </div>
+      <div class="stats-bar reveal d3">
+        <div class="stat"><span class="stat-n">7+</span><span class="stat-l">Years in L&D</span></div>
+        <div class="stat"><span class="stat-n">20+</span><span class="stat-l">Projects</span></div>
+        <div class="stat"><span class="stat-n">16+</span><span class="stat-l">Languages</span></div>
+        <div class="stat"><span class="stat-n">5+</span><span class="stat-l">Industries</span></div>
+      </div>
+    </div>
+    <!-- Profile card -->
+    <div class="profile-card reveal d2">
+      <img class="profile-photo" src="https://lh3.googleusercontent.com/sitesv/AA5AbUDrUecff9TABrfMo6Sl2qkFbZmlRVNQypsJ1LuhV4kh4r3mpVREXZwcI0vNGCu9O62S7Kgtucn8FfksrEqkx9gknCZbneNubROplxMlW8PGWQ64i-h6ZanSLNBrUnFHSFJb8HXtl3ZJPfDEDCAQFLsMKD1jWULIzN9ZdnLyISinG-5HWmWqfJWqDT42GrnB9vu8aq8361x8whw3dQYEIsVgmYuYa64ZDOZj=w400" alt="Madhu Kumar Sikilammetla" onerror="this.src='https://ui-avatars.com/api/?name=MK&background=161D2F&color=F0B429&size=280&bold=true'">
+      <div class="profile-name">Madhu Kumar Sikilammetla</div>
+      <div class="profile-title-sm">Instructional Designer & eLearning Developer</div>
+      <div class="profile-loc">📍 India &nbsp;·&nbsp; <span class="dot-avail"></span>Open to Work</div>
+      <div class="profile-chips">
+        <span class="tag tag-b">Storyline 360</span>
+        <span class="tag tag-b">xAPI · SCORM</span>
+        <span class="tag tag-g">ZapWorks AR</span>
+        <span class="tag tag-g">ADA/508</span>
+        <span class="tag">JavaScript</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="ticker-item">Articulate Storyline 360</span><span class="ticker-item">Rise 360</span><span class="ticker-item">Lectora</span><span class="ticker-item">Captivate</span><span class="ticker-item">iSpring</span><span class="ticker-item">ZapWorks AR/VR</span><span class="ticker-item">Blender 3D</span><span class="ticker-item">Vyond</span><span class="ticker-item">JavaScript</span><span class="ticker-item">xAPI · SCORM</span><span class="ticker-item">ADA / Section 508</span><span class="ticker-item">Mindtickle LMS</span><span class="ticker-item">Docebo LMS</span><span class="ticker-item">Power Automate</span><span class="ticker-item">16–22 Languages</span><span class="ticker-item">Adobe Creative Suite</span>
+    <span class="ticker-item">Articulate Storyline 360</span><span class="ticker-item">Rise 360</span><span class="ticker-item">Lectora</span><span class="ticker-item">Captivate</span><span class="ticker-item">iSpring</span><span class="ticker-item">ZapWorks AR/VR</span><span class="ticker-item">Blender 3D</span><span class="ticker-item">Vyond</span><span class="ticker-item">JavaScript</span><span class="ticker-item">xAPI · SCORM</span><span class="ticker-item">ADA / Section 508</span><span class="ticker-item">Mindtickle LMS</span><span class="ticker-item">Docebo LMS</span><span class="ticker-item">Power Automate</span><span class="ticker-item">16–22 Languages</span><span class="ticker-item">Adobe Creative Suite</span>
+  </div>
+</div>
+
+<!-- WHAT I DO -->
+<section class="section section-alt">
+  <div class="eyebrow reveal">What I Do</div>
+  <h2 class="display reveal d1">Design thinking meets<br><em>engineering precision.</em></h2>
+  <div class="pillars">
+    <div class="pillar reveal d1">
+      <div class="pillar-num">01</div><span class="pillar-icon">✏️</span>
+      <h3 class="pillar-title">Instructional Design</h3>
+      <p class="pillar-body">Scenario-based learning, branching narratives, performance-based assessments, and content architecture grounded in ADDIE, SAM, Bloom's Taxonomy, Gagné's 9 Events — designed for measurable behaviour change, not completion rates.</p>
+      <div class="tags"><span class="tag tag-b">ADDIE · SAM</span><span class="tag tag-b">Bloom's Taxonomy</span><span class="tag">Storyboarding</span><span class="tag">Scenario Design</span></div>
+    </div>
+    <div class="pillar reveal d2">
+      <div class="pillar-num">02</div><span class="pillar-icon">⚡</span>
+      <h3 class="pillar-title">eLearning Development</h3>
+      <p class="pillar-body">Custom JavaScript interactions inside Storyline 360, AR/VR with ZapWorks, 3D animations with Blender, video production with Vyond and Camtasia, SCORM/xAPI packaging — built beyond the authoring tool default, every time.</p>
+      <div class="tags"><span class="tag tag-b">Storyline 360</span><span class="tag tag-b">JavaScript</span><span class="tag tag-g">ZapWorks AR/VR</span><span class="tag">SCORM · xAPI</span></div>
+    </div>
+    <div class="pillar reveal d3">
+      <div class="pillar-num">03</div><span class="pillar-icon">🌍</span>
+      <h3 class="pillar-title">Localisation & Accessibility</h3>
+      <p class="pillar-body">End-to-end localisation across 16–22 languages including Arabic RTL, LMS administration on Mindtickle and Docebo, ADA/Section 508 compliance built from the template architecture level — not retrofitted, not an afterthought.</p>
+      <div class="tags"><span class="tag tag-g">ADA / 508</span><span class="tag tag-b">16–22 Languages</span><span class="tag">Mindtickle · Docebo</span><span class="tag">RTL Support</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO VIDEO -->
+<section class="video-section">
+  <div class="video-grid">
+    <div class="reveal">
+      <div class="video-text-label">Introduction</div>
+      <h2 class="video-text-title">See the work<br>in <em>action.</em></h2>
+      <p class="video-text-body">A walkthrough of my portfolio, design process, and the thinking behind each project — from initial storyboard to published SCORM package. Watch to understand how I approach every learning challenge.</p>
+      <a href="work.html" class="btn btn-primary">Browse All Projects →</a>
+    </div>
+    <div class="reveal d2">
+      <div class="video-wrap">
+        <!-- Replace YOUR_VIDEO_ID with your actual YouTube video ID -->
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1" title="Madhu Kumar Sikilammetla Portfolio Introduction" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <p style="font-family:var(--mono);font-size:.55rem;letter-spacing:.08em;color:var(--muted);margin-top:.75rem;text-align:center">Replace the YouTube video ID in index.html line ~150 with your own video ID</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED WORK -->
+<section class="section">
+  <div class="eyebrow reveal g">Selected Work</div>
+  <h2 class="display reveal d1">Projects that show<br><em>how I think.</em></h2>
+  <div class="home-projects">
+
+    <div class="project-card reveal d1" style="cursor:pointer" onclick="location.href='work.html#aml'">
+      <div class="proj-thumb">
+        <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUBwf5RZgw4q7TVGbgROkHXCiXDArm4QPVqMN92V1uKb7IDdcCHuPisz_OgOljHTvl5laslAXr4sRnAln2B760Ldz4aVqHeCFMIh0XcbCaS8_H903BWIimQ1JWa1VpWZ-ed1kolHz5eMFbiEuTIehENWLz-OArZOR9Vc8-sv8POPVY1hsmbYkYOSqwosnhUt7GBoSCG3uOB3wZvj4WJ2YJVX003xBoW6rWiMPCo=w640" alt="Anti-Money Laundering" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=640&q=70'">
+        <div class="proj-overlay"><span class="proj-cta">View project →</span></div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-num">01</div>
+        <div class="proj-cat">Compliance · Banking · End-to-End</div>
+        <div class="proj-title">Anti-Money Laundering</div>
+        <div class="proj-desc">Branching scenario course placing learners inside real suspicious transaction reviews. Every decision leads to consequence-driven feedback grounded in actual regulatory frameworks.</div>
+        <div class="proj-id"><span class="proj-id-lbl">ID Model</span><span class="proj-id-val">ADDIE + Action Mapping · Bloom's Level 3</span></div>
+        <div class="tags" style="margin-bottom:.85rem"><span class="tag tag-b">Storyline 360</span><span class="tag">SCORM</span><span class="tag tag-g">Banking</span></div>
+        <div class="proj-footer"><span></span><div class="proj-arrow">View project →</div></div>
+      </div>
+    </div>
+
+    <div class="project-card reveal d2" style="cursor:pointer" onclick="location.href='work.html'">
+      <div class="proj-thumb">
+        <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUABSWXFa9K5AGNbZ7-Bv5oeT7XYwTbqckamuV7mEcA3cxQb3RCeYAf8NMTxdr73ybc9YbriGyVg3R6PClbG6ZcDHM_DfaphRm4Vd-sjKBq4hvywpxRjmgXcWA4izV1r4IFmqfmsZGipP9Njn2klBDWoYqMiWuGZPjO9Fny7FpILNq5OkVL17k9q-zLjzOQP2-zKqGq-bS4sp3_4VZKogefY6f_8PXFn3wso290=w640" alt="Bees and Beehives" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=640&q=70'">
+        <div class="proj-overlay"><span class="proj-cta">View project →</span></div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-num">02</div>
+        <div class="proj-cat">Game-Based Learning · Science · Education</div>
+        <div class="proj-title">Bees and Beehives</div>
+        <div class="proj-desc">Interactive biology game using Merrill's First Principles — starting with a real-world problem (colony collapse), activating prior knowledge, guiding discovery rather than exposition.</div>
+        <div class="proj-id"><span class="proj-id-lbl">ID Model</span><span class="proj-id-val">Merrill's First Principles · Game Design</span></div>
+        <div class="tags" style="margin-bottom:.85rem"><span class="tag tag-g">Game Design</span><span class="tag tag-b">Storyline 360</span></div>
+        <div class="proj-footer"><span></span><div class="proj-arrow">View project →</div></div>
+      </div>
+    </div>
+
+    <div class="project-card reveal d1" style="cursor:pointer" onclick="location.href='work.html'">
+      <div class="proj-thumb">
+        <img src="https://lh3.googleusercontent.com/sitesv/AA5AbUBrcEpUJRTmgdlZSo1XwDfqT1u8KyKWZQ9ogTIZ66svAdRKdnvH-fft_jelo3ffwiB6fa4xeQB8fJCa8W9wsOLNVotWuWfsaoULwG-pCKD8_RJoFYGxHsFYV_MkPraHsJw71ig3k7u315-Ph2VIwktz3r3_pHkopyh-df6p7GrtGybgIPqeDuXTPzOAI76XgGVSHP71n2z0u1QhZXPRrMh8wf7dv6ClUoEe2JI=w640" alt="Memory Flash Cards" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=640&q=70'">
+        <div class="proj-overlay"><span class="proj-cta">View project →</span></div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-num">03</div>
+        <div class="proj-cat">Game-Based Learning · Memory · Cognition</div>
+        <div class="proj-title">Memory Flash Cards</div>
+        <div class="proj-desc">Spaced repetition memory card game grounded in the Retrieval Practice Effect and Ebbinghaus Forgetting Curve. Adaptable to any subject matter as a post-training reinforcement tool.</div>
+        <div class="proj-id"><span class="proj-id-lbl">ID Model</span><span class="proj-id-val">Cognitive Load Theory · Spaced Repetition</span></div>
+        <div class="tags" style="margin-bottom:.85rem"><span class="tag tag-g">Game</span><span class="tag tag-b">Storyline</span></div>
+        <div class="proj-footer"><span></span><div class="proj-arrow">View project →</div></div>
+      </div>
+    </div>
+
+    <a href="work.html" class="project-card reveal d2" style="display:flex;align-items:center;justify-content:center;min-height:280px;text-decoration:none;background:var(--surface)">
+      <div style="text-align:center;padding:2rem">
+        <div style="font-family:var(--serif);font-size:4rem;color:var(--gold);font-weight:300;line-height:1;margin-bottom:.6rem">20+</div>
+        <div style="font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem">projects in portfolio</div>
+        <div class="proj-arrow" style="justify-content:center">See all work →</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- COMPETENCY RADAR -->
+<section class="section section-alt">
+  <div class="radar-wrap">
+    <div>
+      <div class="eyebrow reveal">Competency Map</div>
+      <h2 class="display reveal d1">Where I sit across<br><em>the L&D spectrum.</em></h2>
+      <p style="font-family:var(--sans);font-size:.92rem;color:var(--text2);max-width:460px;margin-top:.85rem;line-height:1.7" class="reveal d2">Seven years of practice across five industries. Mapped honestly — grounded in real project evidence, not aspirational claims.</p>
+      <div class="radar-legend">
+        <div class="rl-item reveal d1"><div class="rl-dot"></div><div><div class="rl-title">Instructional Design</div><div class="rl-desc">ID models, storyboarding, learning theory applied as structural design decisions.</div></div></div>
+        <div class="rl-item reveal d2"><div class="rl-dot"></div><div><div class="rl-title">Technical Development</div><div class="rl-desc">JavaScript, custom interactions, AR/VR with ZapWorks, 3D with Blender.</div></div></div>
+        <div class="rl-item reveal d3"><div class="rl-dot" style="background:var(--gold)"></div><div><div class="rl-title">Accessibility & Standards</div><div class="rl-desc">ADA/508, WCAG 2.1 AA — built from template architecture, not retrofitted.</div></div></div>
+        <div class="rl-item reveal"><div class="rl-dot" style="background:var(--teal)"></div><div><div class="rl-title">Localisation (16–22 Languages)</div><div class="rl-desc">RTL support, Arabic, multi-region LMS deployment workflows.</div></div></div>
+        <div class="rl-item reveal d1"><div class="rl-dot" style="background:var(--red)"></div><div><div class="rl-title">LMS & Operations</div><div class="rl-desc">Mindtickle, Docebo, SCORM Cloud admin, Power Automate.</div></div></div>
+      </div>
+    </div>
+    <div class="reveal d2"><canvas id="radar" width="420" height="420"></canvas></div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<div class="testimonial-band">
+  <div class="testimonial-inner reveal">
+    <div class="t-quote">Madhu is a highly skilled professional with fantastic ideas, attention to detail, and delivers high impact programs that produce amazing results.</div>
+    <div class="t-author">Amit Goyal</div>
+    <div class="t-role">Sr. Director Content & Operations · Acadecraft Private Limited</div>
+  </div>
+</div>
+
+<!-- INTERACTIVE TOOLS -->
+<section class="section section-alt">
+  <div class="eyebrow reveal g">Interactive Tools</div>
+  <h2 class="display reveal d1">Don't just read.<br><em>Try it.</em></h2>
+  <p style="font-family:var(--sans);font-size:.92rem;color:var(--text2);max-width:540px;margin-top:.75rem;margin-bottom:3.5rem;line-height:1.7" class="reveal d2">Three working tools that demonstrate the thinking behind the portfolio. No screenshots. Click in and explore.</p>
+  <div class="card-grid-3 reveal">
+    <a href="spot-the-bug.html" class="card" style="text-decoration:none">
+      <div style="font-size:1.75rem;margin-bottom:1rem">🐛</div>
+      <div class="card-cat">Game · 5 Rounds · Timer</div>
+      <div class="card-title">Spot the Bug</div>
+      <div class="card-body">Find every accessibility and instructional design violation hidden in fake course slides. 5 rounds, 30 seconds each. Points deducted for wrong clicks.</div>
+      <div class="card-arrow">Play now →</div>
+    </a>
+    <a href="id-model-selector.html" class="card" style="text-decoration:none">
+      <div style="font-size:1.75rem;margin-bottom:1rem">🧭</div>
+      <div class="card-cat">Tool · 5 Questions · Personalised</div>
+      <div class="card-title">ID Model Selector</div>
+      <div class="card-body">Answer 5 questions about your project. Get a recommended ID framework with a full rationale and why the others don't fit as well.</div>
+      <div class="card-arrow">Try the tool →</div>
+    </a>
+    <a href="lms-demo.html" class="card" style="text-decoration:none">
+      <div style="font-size:1.75rem;margin-bottom:1rem">🎓</div>
+      <div class="card-cat">Live Demo · Working LMS · xAPI</div>
+      <div class="card-title">Working LMS Demo</div>
+      <div class="card-body">A fully functional LMS running in your browser — lessons, live xAPI statement stream, knowledge check, and certificate generation.</div>
+      <div class="card-arrow">Launch course →</div>
+    </a>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-band">
+  <div class="eyebrow">Let's build something</div>
+  <div class="cta-band-title">Most IDs design it. Most devs build it.<br><em>I do both.</em></div>
+  <a href="contact.html" class="btn-dark">Get in Touch →</a>
+  <a href="work.html" class="btn-dark outline">See My Work</a>
+</div>
+
+<footer>
+  <div class="footer-logo">Madhu Kumar Sikilammetla · Instructional Designer & eLearning Developer · 2024</div>
+  <ul class="footer-links">
+    <li><a href="https://www.linkedin.com/in/madhu-kumar-sikilammetla-22694598" target="_blank">LinkedIn</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="buzz.html">Buzz</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script src="main.js"></script>
+<script>
+new Chart(document.getElementById('radar').getContext('2d'),{
+  type:'radar',
+  data:{
+    labels:['Instructional\nDesign','Technical\nDevelopment','Accessibility\n& Standards','Localisation','LMS &\nOperations'],
+    datasets:[{
+      label:'Madhu Kumar',
+      data:[90,82,87,88,80],
+      backgroundColor:'rgba(91,156,246,.1)',
+      borderColor:'rgba(91,156,246,.7)',
+      borderWidth:2,
+      pointBackgroundColor:'#F0B429',
+      pointBorderColor:'var(--bg)',
+      pointBorderWidth:2,
+      pointRadius:5
+    }]
+  },
+  options:{
+    responsive:true,
+    scales:{r:{
+      min:0,max:100,
+      ticks:{display:false,stepSize:25},
+      grid:{color:'rgba(255,255,255,.06)'},
+      angleLines:{color:'rgba(255,255,255,.06)'},
+      pointLabels:{color:'rgba(228,232,241,.65)',font:{family:"'JetBrains Mono',monospace",size:10}}
+    }},
+    plugins:{legend:{display:false}}
+  }
+});
+</script>
+</body>
+</html>
